@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App-logo {
+  float: left;
+  margin-right: 20px;
+}
+
+.mi-formulario {
+  float: left;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.small-button { 
+  width: '10rem' !important;
+  height: '3rem' !important; 
+  display: 'block' !important; 
+  margin: 'auto' !important; 
+}
