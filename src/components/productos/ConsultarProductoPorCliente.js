@@ -6,12 +6,13 @@ import BuscadorID from '../BuscadorID';
 const ConsultarProductoPorCliente = () => {
 
   const [productos, setProductos] = useState([]);
-  const [productoId, setProductoId] = useState();
+  const [productoId, setProductoId] = useState("");
 
   useEffect(() => {
     productoId && obtenerProductoPorClienteGET(productoId)
       .then(data => {
         setProductos(data);
+        console.log(data)
       })
       .catch(error => {
         console.error(error);
@@ -20,9 +21,11 @@ const ConsultarProductoPorCliente = () => {
 
   return (
     <Container>
+      <h1>Consultar Productos Por Cliente</h1>
       <BuscadorID title="Digite Cliente ID: " setId={setProductoId}></BuscadorID>
-      <Table striped bordered hover>
+      <br/><br/><br/>
 
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>ID</th>

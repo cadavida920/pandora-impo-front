@@ -4,30 +4,19 @@ import { Table, Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { consultarProductoPorIdGET } from '../services/api';
 
 const ConsultarProductoPorId = () => {
-  const productosMock = [
-    {
-      "id": "1",
-      "descripcion": "portatil",
-      "cantidad": 5,
-      "costo": 2.000,
-      "impuesto": 0.10,
-      "costoEnvio": 5.00,
-      "precioVenta": 39.99,
-      "valorRestante": 60.00,
-      "estadoEnvio": "En tránsito",
-      "estadoPago": "Pagado"
-    }
-  ];
+ 
+    
+ 
 
 
-  const [productos, setProductos] = useState(productosMock);
+  const [productos, setProductos] = useState([]);
   const [buscarId, setBuscarId] = useState("");
 
   const buscarProductoPorId = (id) => {
     consultarProductoPorIdGET(id)
       .then(data => {
         console.log(data);
-        const productosArray = Array.from(data);
+        const productosArray = [data];
         setProductos(productosArray);
       })
       .catch(error => {
@@ -80,7 +69,7 @@ const ConsultarProductoPorId = () => {
           {productos.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
-              <td>{product.descripcion}</td>
+              <td>{product.descripcionProducto}</td>
               <td>{product.cantidad}</td>
               <td>{product.costo}</td>
               <td>{product.impuesto}</td>

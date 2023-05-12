@@ -19,20 +19,23 @@ const cambiarEstadoEnvio = () => {
     console.log("Cambiando estado");
 }
 
+
 const handleSubmit = (event) => {
     event.preventDefault();
     cambiarEstadoEnvio();
     const json = {
-      id: 2,
+      id: id,
       estadoEnvio: obtenerEstadoEnvio(estadoEnvio)
     }
-    actualizarProductoPUT(json);
+    actualizarProductoPUT(json)
+    .then ( data => {
+      setEstadoEnvio("");
+      setActualizarFechaEnvio("");
+      setId("")
+    });
 }
 
-const obtenerEstadoEnvio = (estado) => estado.toLowerCase() === "enviado";
-
-
-
+const obtenerEstadoEnvio = (estado) => estado.toLowerCase() === "enviado" ? 1 : 0;
 
 const variant = 'primary';
 return (

@@ -9,23 +9,15 @@ import BuscadorID from './BuscadorID';
 
 const BuscarDepositoCliente = () => {
   const [depositoId, setDepositoId] = useState();
-  const depositoMock = [
+ 
 
-    {
-      "id": "1",
-      "nombre": "andres",
-      "valorDeposito": "100000"
-
-    }
-  ]
-
-  const [deposito, setDeposito] = useState(depositoMock)
+  const [deposito, setDeposito] = useState([])
 
   const buscarDeposito = (id) => {
     id && buscarDepositoClienteGET(id)
       .then(data => {
         console.log(data);
-        const productosArray = Array.from(data);
+        const productosArray =[data];
         setDeposito(productosArray);
         // que llenen ciertos campos 
       })
@@ -59,7 +51,7 @@ const BuscarDepositoCliente = () => {
           {deposito.map((deposito) => (
             <tr key={deposito.id}>
               <td>{deposito.id}</td>
-              <td>{deposito.nombre}</td>
+              <td>{deposito.cliente.nombre}</td>
               <td>{deposito.valorDeposito}</td>
             </tr>
           ))}

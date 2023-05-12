@@ -19,21 +19,13 @@ function Header() {
             <NavDropdown title="Depositos" id="basic-nav-dropdown">
             <NavDropdown.Item href="/deposito">crear deposito</NavDropdown.Item>
             <NavDropdown.Item href="/Buscar/Deposito/cliente">Buscar Deposito Clientes</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2"/>
+
             </NavDropdown>
-
-
             <NavDropdown title="Productos" id="basic-nav-dropdown">
             <NavDropdown.Item href="/producto">Crear Producto </NavDropdown.Item>
             <NavDropdown.Item href="/actualizar/producto">Actualizar Producto</NavDropdown.Item>
             <NavDropdown.Item href="/productos/id">Buscar Producto Por Id</NavDropdown.Item>
             <NavDropdown.Item href="/productos/cliente">Consultar Producto Por Cliente</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-            
-            </NavDropdown.Item>
-              
-              
-              <NavDropdown.Item href="#action/3.4"/>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
