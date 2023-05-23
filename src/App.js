@@ -6,7 +6,7 @@ import ProductosManager from './components/productos/ProductosManager';
 import AgregarDepositos from './components/AgregarDepositos';
 import { BrowserRouter as Router , Route, Routes} from "react-router-dom";
 import ConsultarProductoPorCliente from './components/productos/ConsultarProductoPorCliente';
-import ConsultarProductoPorId from './components/BuscarProductoPorId';
+import ConsultarProductoPorId from './components/productos/BuscarProductoPorId';
 import BuscarTodosClientes from './components/BuscarTodosClientes';
 import BuscarDepositoCliente from './components/BuscarDepositoCliente';
 import ActualizarProducto from './components/productos/ActualizarProducto';

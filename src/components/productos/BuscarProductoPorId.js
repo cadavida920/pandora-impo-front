@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { useState } from 'react';
 import { Table, Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { consultarProductoPorIdGET } from '../services/api';
+import { consultarProductoPorIdGET } from '../../services/api';
+import formatColombianPesos from '../../services/currency';
 
 const ConsultarProductoPorId = () => {
- 
-    
- 
-
-
   const [productos, setProductos] = useState([]);
   const [buscarId, setBuscarId] = useState("");
 
@@ -71,11 +67,11 @@ const ConsultarProductoPorId = () => {
               <td>{product.id}</td>
               <td>{product.descripcionProducto}</td>
               <td>{product.cantidad}</td>
-              <td>{product.costo}</td>
-              <td>{product.impuesto}</td>
-              <td>{product.costoEnvio}</td>
-              <td>{product.precioVenta}</td>
-              <td>{product.valorRestante}</td>
+              <td>{formatColombianPesos(product.costo)}</td>
+              <td>{formatColombianPesos(product.impuesto)}</td>
+              <td>{formatColombianPesos(product.costoEnvio)}</td>
+              <td>{formatColombianPesos(product.precioVenta)}</td>
+              <td>{formatColombianPesos(product.valorRestante)}</td>
               <td>{product.estadoEnvio}</td>
               <td>{product.estadoPago}</td>
             </tr>

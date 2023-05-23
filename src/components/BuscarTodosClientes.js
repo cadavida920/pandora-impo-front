@@ -3,6 +3,7 @@ import React, { Component, useEffect } from 'react'
 import { useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
 import { buscarTodosClientesGET } from '../services/api';
+import formatColombianPesos from '../services/currency';
 
 const BuscarTodosClientes = () => {
   
@@ -38,7 +39,7 @@ const buscarClientes = () => {
               <td>{product.id}</td>
               <td>{product.nombre}</td>
               <td>{product.correo}</td>
-              <td>{product.balance}</td>
+              <td>{formatColombianPesos(product.balance)}</td>
             </tr>
           ))}
         </tbody>
