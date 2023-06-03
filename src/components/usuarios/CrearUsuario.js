@@ -37,7 +37,8 @@ function CrearUsuario() {
 
   const variant = 'primary'
   return (
-    <Container>
+    <Container className="container-margin">
+
       <h1>CrearUsuario</h1>
       <Form onSubmit={handleSubmit}>
 

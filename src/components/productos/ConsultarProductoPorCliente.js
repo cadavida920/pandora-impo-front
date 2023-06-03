@@ -3,6 +3,7 @@ import { Container, Table } from 'react-bootstrap';
 import { obtenerProductoPorClienteGET } from "../../services/api"
 import BuscadorID from '../BuscadorID';
 import formatColombianPesos from '../../services/currency';
+import ProductoItem from './ProductoItem';
 
 const ConsultarProductoPorCliente = () => {
 
@@ -21,7 +22,7 @@ const ConsultarProductoPorCliente = () => {
   }, [productoId]);
 
   return (
-    <Container>
+    <Container className='container-margin'>
       <h1>Consultar Productos Por Cliente</h1>
       <BuscadorID title="Digite Cliente ID: " setId={setProductoId}></BuscadorID>
       <br/><br/><br/>
@@ -39,22 +40,13 @@ const ConsultarProductoPorCliente = () => {
             <th>Valor Restante</th>
             <th>Estado Envío</th>
             <th>Estado Pago</th>
+            <th>EstadoEnvio</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>
           {productos.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.descripcionProducto}</td>
-              <td>{product.cantidad}</td>
-              <td>{formatColombianPesos(product.costo) }</td>
-              <td>{product.impuesto}</td>
-              <td>{formatColombianPesos(product.costoEnvio)}</td>
-              <td>{formatColombianPesos(product.precioVenta)}</td>
-              <td>{formatColombianPesos(product.valorRestante)}</td>
-              <td>{product.estadoEnvio}</td>
-              <td>{product.estadoPago}</td>
-            </tr>
+            <ProductoItem product={product}></ProductoItem>
           ))}
         </tbody>
 
@@ -62,5 +54,4 @@ const ConsultarProductoPorCliente = () => {
     </Container>
   );
 };
-
 export default ConsultarProductoPorCliente;

@@ -5,6 +5,7 @@ function UsuarioManager() {
   return (
     <div>
       <h1>Crear usuario</h1>
+      <ConsultarProductoPorCliente/>
       <CrearUsuario />
     </div>
   );

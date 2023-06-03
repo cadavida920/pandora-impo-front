@@ -10,10 +10,8 @@ import ConsultarProductoPorId from './components/productos/BuscarProductoPorId';
 import BuscarTodosClientes from './components/BuscarTodosClientes';
 import BuscarDepositoCliente from './components/BuscarDepositoCliente';
 import ActualizarProducto from './components/productos/ActualizarProducto';
+import BuscarTodosLosProductos from './components/productos/BuscarTodosProductos';
 import Header from './components/Header';
-
-
-
 
 
 
@@ -24,7 +22,8 @@ function App() {
       <Header/>
       <Router>
         <Routes>
-          <Route path='/' element={<ProductosManager></ProductosManager>}/>
+
+          <Route path='/manager' element={<ProductosManager></ProductosManager>}/>
           <Route path='producto' element={<CrearProducto></CrearProducto>}/>
           <Route path='/usuario' element={<CrearUsuario />}/>
           <Route path='/deposito' element={<AgregarDepositos></AgregarDepositos>}/>
@@ -34,7 +33,9 @@ function App() {
           
           <Route path='/Buscar/todos/id' element={<BuscarTodosClientes></BuscarTodosClientes>}/>
           <Route path='/Buscar/Deposito/cliente' element={<BuscarDepositoCliente></BuscarDepositoCliente>}/>
-          <Route path='/actualizar/producto' element={<ActualizarProducto></ActualizarProducto>}/>
+          
+          <Route path='/' element={<BuscarTodosLosProductos></BuscarTodosLosProductos>}/>
+          <Route path='/producto/all' element={<BuscarTodosLosProductos></BuscarTodosLosProductos>}/>
 
           
         </Routes>

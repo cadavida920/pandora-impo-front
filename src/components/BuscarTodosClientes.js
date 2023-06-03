@@ -22,7 +22,8 @@ const buscarClientes = () => {
 
   useEffect (() => {buscarClientes()},[]);
   return (
-    <Container>
+    <Container className='container-margin'>
+
       <Table striped bordered hover>
         <thead>
           <tr>

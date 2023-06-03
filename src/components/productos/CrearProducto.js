@@ -46,7 +46,7 @@ function CrearProducto() {
   const variant = 'primary'
 
   return (
-    <Container>
+    <Container className='container-margin'>
       <h1>Crear de Producto</h1>
       <Form onSubmit={handleSubmit}>
 

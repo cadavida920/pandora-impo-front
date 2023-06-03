@@ -31,13 +31,11 @@ const BuscarDepositoCliente = () => {
   }, [depositoId]);
 
   return (
-    <Container>
-      <h1>Buscar depositos</h1>
-      
-      <BuscadorID title={"Digite id Deposito: "} setId={setDepositoId}></BuscadorID>
-      
-      <br /><br /><br />
+    <Container className='container-margin'>
 
+      <h1>Buscar depositos</h1>
+      <BuscadorID title={"Digite id Deposito: "} setId={setDepositoId}></BuscadorID>
+      <br /><br /><br />
       <Table striped bordered hover>
         <thead>
           <tr>

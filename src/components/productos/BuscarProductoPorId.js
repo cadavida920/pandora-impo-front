@@ -26,7 +26,7 @@ const ConsultarProductoPorId = () => {
   };
 
   return (
-    <Container>
+    <Container className='container-margin'> 
       <h1>BuscarProductoPorId</h1>
       <Container>
       <Form onSubmit={handleSubmit}>
@@ -44,7 +44,7 @@ const ConsultarProductoPorId = () => {
 
       <br/>
 
-      <Container>
+      <Container className='container-margin'>
       <Table striped bordered hover>
         <thead>
           <tr>

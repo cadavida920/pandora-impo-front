@@ -75,6 +75,10 @@ export const buscarDepositoClienteGET = (id) => {
     return get ("/deposito/" + id );
 }
 
+export const buscarTodosProductosGet = (producto) => {
+    return get ("/producto/all" , producto);
+}
+
 
 
 

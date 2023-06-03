@@ -28,7 +28,8 @@ function AgregarDepositos() {
   useEffect(() => { }, [ClienteId, ValorDeposito]);
 
   return (
-    <Container>
+    <Container className='container-margin'>
+
       <h1>AgregarDepositos</h1>
 
       <Form onSubmit={handleSubmit}>

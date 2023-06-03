@@ -25,6 +25,17 @@ code {
   margin-bottom: 10px;
 }
 
+.container-margin {
+
+  margin-top: 4rem;
+
+}
+
+.container-espacio{
+  margin-top: 2rem;
+
+}
+
 .small-button { 
   width: '10rem' !important;
   height: '3rem' !important; 
