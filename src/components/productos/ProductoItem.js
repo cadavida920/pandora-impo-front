@@ -5,10 +5,10 @@ import { useState } from 'react';
 import EditarProductoModal from './EditarProductoModal';
 import {AiFillEdit} from "react-icons/ai";
 
-function ProductoItem({ product }) {
+function ProductoItem({ product, actualizarProductosHandler }) {
     const [showModal, setShowModal] = useState(false);
 
-    debugger;
+    
     const handleEdit = () => {
         setShowModal(true);
     };
@@ -17,8 +17,10 @@ function ProductoItem({ product }) {
             <EditarProductoModal
                 show={showModal}
                 setShow={setShowModal}
-                producto={product}>
+                producto={product}
+                actualizarProductosHandler={actualizarProductosHandler}>
             </EditarProductoModal>
+
             <tr key={"item-" + product.id}>
                 <td>{product.id}</td>
                 <td>{product.cliente.nombre}</td>
@@ -31,6 +33,7 @@ function ProductoItem({ product }) {
                 <td>{formatColombianPesos(product.valorRestante)}</td>
                 <td>{product.descripcionEstadoEnvio}</td>
                 <td>{product.estadoPago}</td>
+            
                 <td>
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" id="dropdown-editar">

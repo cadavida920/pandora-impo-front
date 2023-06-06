@@ -42,3 +42,14 @@ code {
   display: 'block' !important; 
   margin: 'auto' !important; 
 }
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-dialog {
+  width: fit-content;
+}

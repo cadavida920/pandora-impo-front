@@ -23,7 +23,7 @@ function Header() {
 
             <NavDropdown title="Productos" id="basic-nav-dropdown">
             <NavDropdown.Item href="/producto">Crear Producto </NavDropdown.Item>
-            <NavDropdown.Item href="/actualizar/producto">Actualizar Producto</NavDropdown.Item>
+            
             <NavDropdown.Item href="/productos/id">Buscar Producto Por Id</NavDropdown.Item>
             <NavDropdown.Item href="/productos/cliente">Consultar Producto Por Cliente</NavDropdown.Item>
             <NavDropdown.Item href="/">Buscar todos los productos</NavDropdown.Item>
