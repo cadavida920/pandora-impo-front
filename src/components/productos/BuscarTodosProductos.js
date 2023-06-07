@@ -19,6 +19,17 @@ const BuscarTodosLosProductos = () => {
             });
     }, []);
 
+    const updateProductHandler = (producto) => {
+        const productosActualizados = productos.map(p => {
+            if (p.id === producto.id) {
+                return producto;
+            } else {
+                return p;
+            }
+        });
+        setProductos(productosActualizados);
+    }
+
     return (
         <Container className='container-margin'>
             <h1>Buscar todos los productos</h1>
@@ -42,7 +53,11 @@ const BuscarTodosLosProductos = () => {
                 </thead>
                 <tbody>
                     {productos.map((product) => (
-                        <ProductoItem product={product}></ProductoItem>
+                        <ProductoItem 
+                            product={product}
+                            actualizarProductosHandler={updateProductHandler}>
+
+                            </ProductoItem>
                     ))}
                 </tbody>
             </Table>

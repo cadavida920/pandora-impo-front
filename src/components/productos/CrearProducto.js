@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import { crearProductoPOST } from "../../services/api";
+import DropdownWithSearch from "../DropdownWithSearch";
+import { buscarTodosClientesGET } from "../../services/api";
 
 function CrearProducto() {
   const [descripcion, setDescripcion] = useState("");
@@ -10,6 +12,9 @@ function CrearProducto() {
   const [impuesto, setImpuesto] = useState("");
   const [costoEnvio, setCostoEnvio] = useState("");
   const [clienteId, setClienteId] = useState("");
+  const [allclientes, setAllClientes] = useState([]);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,7 +25,8 @@ function CrearProducto() {
       costo: costo,
       impuesto: impuesto,
       costoEnvio: costoEnvio,
-      clienteId: clienteId
+      clienteId: clienteId,
+      
     }
 
     crearProductoPOST(crearProducto)
@@ -39,8 +45,36 @@ function CrearProducto() {
       });
   };
 
+  const buscarTodosLosClientes = () => {
+    buscarTodosClientesGET()
+      .then(data => {
+        const options = data.map(
+          c => {
+            const option = { 
+              id: c.id,
+              name: c.nombre,
+            }
+            return option;
+          }
+        );
+        setAllClientes(options);
+       }
+      )
+  }
+
   useEffect(() => {
-  }, [descripcion, cantidad, costo, impuesto, costoEnvio]);
+    buscarTodosLosClientes();
+  },[]);
+
+
+  const handleOptionUpdated = (clienteId) => {
+    debugger;
+    setClienteId(clienteId);
+  };
+
+  useEffect(() => {
+  }, [descripcion, cantidad, costo, impuesto, costoEnvio, clienteId ]);
+  
 
 
   const variant = 'primary'
@@ -87,9 +121,15 @@ function CrearProducto() {
         </Form.Group>
 
         <Form.Group className="form-group" as={Row} controlId="formClienteId">
-          <Form.Label column sm={3}>Cliente Id:</Form.Label>
+          <Form.Label column sm={3}>Cliente:</Form.Label>
           <Col sm={9}>
-            <Form.Control type="text" value={clienteId} onChange={(event) => setClienteId(event.target.value)} />
+            <DropdownWithSearch
+            options={allclientes}
+            currentKey={clienteId}
+            handleOptionUpdated={handleOptionUpdated}
+            title={"Digite el nombre del producto"}>
+            </DropdownWithSearch>
+            
           </Col>
         </Form.Group>
 

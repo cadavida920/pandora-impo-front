@@ -11,8 +11,10 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto"> 
-
+            
             <Nav.Link href="/manager">UsuarioManager</Nav.Link>
+
+            <Nav.Link href='/usuario'>CrearUsuario</Nav.Link>
 
             <Nav.Link href="/Buscar/todos/id">BuscarTodosClientes</Nav.Link>
 
@@ -23,7 +25,7 @@ function Header() {
 
             <NavDropdown title="Productos" id="basic-nav-dropdown">
             <NavDropdown.Item href="/producto">Crear Producto </NavDropdown.Item>
-            <NavDropdown.Item href="/actualizar/producto">Actualizar Producto</NavDropdown.Item>
+            
             <NavDropdown.Item href="/productos/id">Buscar Producto Por Id</NavDropdown.Item>
             <NavDropdown.Item href="/productos/cliente">Consultar Producto Por Cliente</NavDropdown.Item>
             <NavDropdown.Item href="/">Buscar todos los productos</NavDropdown.Item>

@@ -30,11 +30,6 @@ function CrearUsuario() {
       });
 
   };
-
-
-
-
-
   const variant = 'primary'
   return (
     <Container className="container-margin">

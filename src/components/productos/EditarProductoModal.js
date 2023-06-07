@@ -4,29 +4,32 @@ import { actualizarProductoPUT } from "../../services/api";
 import AiFillEdit from "react-icons/ai"
 
 
-function EditarProductoModal({ show, setShow, producto }) {
+function EditarProductoModal({ show, setShow, producto, actualizarProductosHandler }) {
 
   const [nombre, setNombre] = useState(producto.cliente.nombre);
   const [cantidad, setCantidad] = useState(producto.cantidad);
   const [descripcion, setDescripcion] = useState(producto.descripcionProducto);
-  const [estadoEnvio, setEstadoEnvio] = useState("");
-
+  const [estadoEnvio, setEstadoEnvio] = useState(producto.codigoEstadoEnvio);
+  
   
 
   const handleClose = () => {
     setShow(false);
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const json = {
       id: producto.id,
       estadoEnvio: estadoEnvio,
     }
+
     actualizarProductoPUT(json)
       .then(data => {
+        actualizarProductosHandler(data);
         setEstadoEnvio("");
+        setShow(false);
       });
   }
 
@@ -62,10 +65,6 @@ function EditarProductoModal({ show, setShow, producto }) {
             </Form.Group>
 
 
-
-
-
-
             <Form.Group className="form-group" as={Row} controlId="forEstadoEnvio">
               <Form.Label column sm={3}>EstadoEnvio:</Form.Label>
               <Col sm={9}>
@@ -80,7 +79,7 @@ function EditarProductoModal({ show, setShow, producto }) {
               </Col>
             </Form.Group>
 
-            <Button className='container-espacio' variant="primary" type="submit">
+            <Button  variant="primary" type="submit">
               Actualizar Producto
             </Button>
           </Form>

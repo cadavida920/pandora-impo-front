@@ -3,7 +3,7 @@ import CrearUsuario from "../components/usuarios/CrearUsuario";
 const BASE_URL = "http://localhost:8085";
 
 const post = async(endpoint = "", data = {}) => {
-    fetch(BASE_URL + endpoint, {
+    return await fetch(BASE_URL + endpoint, {
         method: 'POST',
         mode: "cors",
         headers: { 'Content-Type': 'application/json'},
@@ -26,7 +26,7 @@ const get = async(endpoint = "") => {
 
 
 const put = async(endpoint = "", data = {}) => {
-    fetch(BASE_URL + endpoint, {
+    return await fetch(BASE_URL + endpoint, {
         method: 'PUT',
         mode: "cors",
         headers: { 'Content-Type': 'application/json'},
@@ -72,11 +72,15 @@ export const crearDepositoClientePost = (deposito) => {
 }
 
 export const buscarDepositoClienteGET = (id) => {
+    return get ("/deposito/cliente/" + id );
+}
+
+export const buscarDepositoIdGET = (id) => {
     return get ("/deposito/" + id );
 }
 
-export const buscarTodosProductosGet = (producto) => {
-    return get ("/producto/all" , producto);
+export const buscarTodosProductosGet = () => {
+    return get ("/producto/all");
 }
 
 

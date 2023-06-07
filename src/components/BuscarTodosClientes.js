@@ -9,8 +9,7 @@ const BuscarTodosClientes = () => {
   
   const [buscarTodosClientes, setbuscarTodosClientes] = useState([])
 
-const buscarClientes = () => {
-
+  const buscarClientes = () => {
   buscarTodosClientesGET()
     .then(data => {
       setbuscarTodosClientes(data);
