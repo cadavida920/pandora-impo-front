@@ -6,34 +6,44 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 
-const DropdownWithSearch = ({ options, current, handleOptionUpdated, title = "Selecciona una opción" }) => {
-  
-  const [value, setValue] = useState(current ? current.name : title);
-  const [selectedOption, setSelectedOption] = useState(value);
+const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = "Selecciona una opción" }) => {
+  const [value, setValue] = useState(currentKey);
+  const [selectedOption, setSelectedOption] = useState(currentKey);
   const [filteredOptions, setFilteredOptions] = useState(options);
 
   useEffect(() => {
     setFilteredOptions(
       options.filter((option) => {
-        if (value === title) {
+        if (value === "") {
           return true;
-        } else {
+        } else if (value !== "") {
           return option.name.toLowerCase().includes(value.toLowerCase());
+        } else if (currentKey === "") {
+          return true;
         }
       })
     );
-  }, [value]);
+  }, [currentKey, value]);
+
+  useEffect(() => {
+    if (currentKey === "") {
+      setSelectedOption("");
+    }
+  },[currentKey]);
 
   const handleSearch = (e) => {
+    debugger;
     setValue(e.target.value);
   };
 
   const handleSelect = (eventKey, event) => {
+    setValue(event.target.innerText)
     setSelectedOption(event.target.innerText);
   };
 
   const handleClick = (event) => {
     event.preventDefault();
+    debugger;
     const id = event.target.tabIndex;
     handleOptionUpdated(id);
   };
@@ -52,7 +62,7 @@ const DropdownWithSearch = ({ options, current, handleOptionUpdated, title = "Se
         className="dropdown-button"
         onClick={handleDropdownClick}>
         <FormControl
-          value={value === title ? undefined : value}
+          value={value}
           onChange={handleSearch}
           placeholder="Buscar"
           aria-label="Buscar"
@@ -60,7 +70,7 @@ const DropdownWithSearch = ({ options, current, handleOptionUpdated, title = "Se
         />
         {filteredOptions.map((option, index) => (
           <Dropdown.Item
-            key={option.id}
+            key={index}
             eventKey={option.id}
             tabIndex={option.id}
             onClick={handleClick}>

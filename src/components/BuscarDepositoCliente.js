@@ -3,23 +3,21 @@ import { useState, useEffect } from 'react'
 import { Table, Container } from 'react-bootstrap';
 import { buscarDepositoClienteGET } from '../services/api';
 import BuscadorID from './BuscadorID';
+import formatColombianPesos from '../services/currency';
 
 
 
 
 const BuscarDepositoCliente = () => {
-  const [depositoId, setDepositoId] = useState();
- 
+  const [clienteId, setDepositoId] = useState();
+  const [depositos, setDepositos] = useState([]);
 
-  const [deposito, setDeposito] = useState([])
 
-  const buscarDeposito = (id) => {
-    id && buscarDepositoClienteGET(id)
+  const buscarDeposito = (clienteId) => {
+    clienteId && buscarDepositoClienteGET(clienteId)
       .then(data => {
         console.log(data);
-        const productosArray =[data];
-        setDeposito(productosArray);
-        // que llenen ciertos campos 
+        setDepositos(data);
       })
       .catch(error => {
         console.error(error);
@@ -27,15 +25,17 @@ const BuscarDepositoCliente = () => {
   }
 
   useEffect(() => {
-    buscarDeposito(depositoId);
-  }, [depositoId]);
+    buscarDeposito(clienteId);
+  }, [clienteId]);
 
   return (
     <Container className='container-margin'>
 
-      <h1>Buscar depositos</h1>
-      <BuscadorID title={"Digite id Deposito: "} setId={setDepositoId}></BuscadorID>
-      <br /><br /><br />
+      <h1>Buscar depositos por cliente</h1>
+      <BuscadorID title={"Digite id cliente: "} setId={setDepositoId}></BuscadorID>
+
+
+      <br /><br />
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -46,16 +46,15 @@ const BuscarDepositoCliente = () => {
         </thead>
 
         <tbody>
-          {deposito.map((deposito) => (
+          {depositos.map((deposito) => (
             <tr key={deposito.id}>
               <td>{deposito.id}</td>
               <td>{deposito.cliente.nombre}</td>
-              <td>{deposito.valorDeposito}</td>
+              <td>{formatColombianPesos(deposito.valorDeposito)}</td>
             </tr>
           ))}
         </tbody>
       </Table>
-
     </Container>
   )
 };

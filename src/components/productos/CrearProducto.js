@@ -12,7 +12,9 @@ function CrearProducto() {
   const [impuesto, setImpuesto] = useState("");
   const [costoEnvio, setCostoEnvio] = useState("");
   const [clienteId, setClienteId] = useState("");
-  const [allclientes, setAllclientes] = useState([]);
+  const [allclientes, setAllClientes] = useState([]);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +48,6 @@ function CrearProducto() {
   const buscarTodosLosClientes = () => {
     buscarTodosClientesGET()
       .then(data => {
-        debugger;
         const options = data.map(
           c => {
             const option = { 
@@ -56,7 +57,7 @@ function CrearProducto() {
             return option;
           }
         );
-        setAllclientes(options);
+        setAllClientes(options);
        }
       )
   }
@@ -65,15 +66,15 @@ function CrearProducto() {
     buscarTodosLosClientes();
   },[]);
 
-  
-
 
   const handleOptionUpdated = (clienteId) => {
+    debugger;
     setClienteId(clienteId);
   };
 
   useEffect(() => {
-  }, [descripcion, cantidad, costo, impuesto, costoEnvio, ]);
+  }, [descripcion, cantidad, costo, impuesto, costoEnvio, clienteId ]);
+  
 
 
   const variant = 'primary'
@@ -122,14 +123,13 @@ function CrearProducto() {
         <Form.Group className="form-group" as={Row} controlId="formClienteId">
           <Form.Label column sm={3}>Cliente:</Form.Label>
           <Col sm={9}>
-            
             <DropdownWithSearch
             options={allclientes}
-            current={undefined}
+            currentKey={clienteId}
             handleOptionUpdated={handleOptionUpdated}
             title={"Digite el nombre del producto"}>
-
             </DropdownWithSearch>
+            
           </Col>
         </Form.Group>
 

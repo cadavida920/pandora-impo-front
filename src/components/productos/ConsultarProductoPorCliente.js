@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Form, Row,  Col } from 'react-bootstrap';
 import { obtenerProductoPorClienteGET } from "../../services/api"
 import BuscadorID from '../BuscadorID';
-import formatColombianPesos from '../../services/currency';
 import ProductoItem from './ProductoItem';
+import DropdownWithSearch from '../DropdownWithSearch';
+import { buscarTodosClientesGET } from '../../services/api';
 
 const ConsultarProductoPorCliente = () => {
 
   const [productos, setProductos] = useState([]);
-  const [productoId, setProductoId] = useState("");
+  const [clienteId, setClienteId] = useState("");
+  const [allclientes, setAllClientes] = useState([]);
+
 
   useEffect(() => {
-    productoId && obtenerProductoPorClienteGET(productoId)
+    clienteId && obtenerProductoPorClienteGET(clienteId)
       .then(data => {
         setProductos(data);
         console.log(data)
@@ -19,14 +22,56 @@ const ConsultarProductoPorCliente = () => {
       .catch(error => {
         console.error(error);
       });
-  }, [productoId]);
+  }, [clienteId]);
+
+
+  const buscarTodosLosClientes = () => {
+    buscarTodosClientesGET()
+      .then(data => {
+        const options = data.map(
+          c => {
+            const option = {
+              id: c.id,
+              name: c.nombre,
+            }
+            return option;
+          }
+        );
+        setAllClientes(options);
+      }
+      )
+  }
+
+  useEffect(() => {
+    buscarTodosLosClientes();
+  }, []);
+
+  const handleOptionUpdated = (id) => {
+    setClienteId(id);
+  };
 
   return (
     <Container className='container-margin'>
-      <h1>Consultar Productos Por Cliente</h1>
-      <BuscadorID title="Digite Cliente ID: " setId={setProductoId}></BuscadorID>
-      <br/><br/><br/>
+     <h1>Consultar Productos Por Cliente</h1>
+        
+    <Container className='container-margin'>
+      <Form>
+        <Form.Group className="form-group" as={Row} controlId="formDijitevalorDeposito">
+          <Form.Label column sm={3}>{"Digite nombre del cliente"}</Form.Label>
+          <Col sm={9}>
+            <DropdownWithSearch
+              options={allclientes}
+              current={undefined}
+              handleOptionUpdated={handleOptionUpdated}
+              title={"Digite el nombre del cliente"}>
+            </DropdownWithSearch>
 
+          </Col>
+        </Form.Group>
+      </Form>
+      </Container>
+
+      <br /><br /><br/>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -45,8 +90,8 @@ const ConsultarProductoPorCliente = () => {
           </tr>
         </thead>
         <tbody>
-          {productos.map((product) => (
-            <ProductoItem product={product}></ProductoItem>
+          {productos.map((product, index) => (
+            <ProductoItem product={product} index={index}></ProductoItem>
           ))}
         </tbody>
 

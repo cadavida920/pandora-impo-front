@@ -72,6 +72,10 @@ export const crearDepositoClientePost = (deposito) => {
 }
 
 export const buscarDepositoClienteGET = (id) => {
+    return get ("/deposito/cliente/" + id );
+}
+
+export const buscarDepositoIdGET = (id) => {
     return get ("/deposito/" + id );
 }
 

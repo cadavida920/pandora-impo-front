@@ -8,10 +8,10 @@ import DropdownWithSearch from '../DropdownWithSearch';
 const ConsultarProductoPorId = () => {
   const [productos, setProductos] = useState([]);
   const [allProductos, setAllProducts] = useState([]);
-  const [buscarId, setBuscarId] = useState("");
-  
+  const [buscarId, setBuscarId] = useState();
 
-  
+
+
   const buscarProductoPorId = (id) => {
     consultarProductoPorIdGET(id)
       .then(data => {
@@ -27,9 +27,10 @@ const ConsultarProductoPorId = () => {
   const buscarTodosLosProductos = () => {
     buscarTodosProductosGet()
       .then(data => {
+        debugger;
         const options = data.map(
           p => {
-            const option = { 
+            const option = {
               id: p.id,
               name: p.descripcionProducto
             }
@@ -37,10 +38,9 @@ const ConsultarProductoPorId = () => {
           }
         );
         setAllProducts(options);
-       }
+      }
       )
   }
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,16 +48,18 @@ const ConsultarProductoPorId = () => {
   };
 
   useEffect(() => {
-    buscarProductoPorId(buscarId);
+   buscarId && buscarProductoPorId(buscarId);
   }, [buscarId]);
 
-  
+
 
   useEffect(() => {
     buscarTodosLosProductos();
-  },[]);
+    debugger;
+  }, []);
 
   const handleOptionUpdated = (id) => {
+    debugger;
     setBuscarId(id);
     console.log("Joder cambio algo", id);
   }
@@ -66,32 +68,25 @@ const ConsultarProductoPorId = () => {
   return (
     <Container className='container-margin'>
       <h1>BuscarProductoPorId</h1>
+
       <Container>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="form-group" as={Row} controlId="formBuscarId">
             <Form.Label column sm={3}>Buscar por ID:</Form.Label>
             <Col sm={9}>
-              <Form.Control type="text" value={buscarId} onChange={(event) => setBuscarId(event.target.value)} />
+              <DropdownWithSearch
+                options={allProductos}
+                current={undefined}
+                handleOptionUpdated={handleOptionUpdated}
+                title={"Digite el nombre del producto"}>
+              </DropdownWithSearch>
             </Col>
           </Form.Group>
-          <Button variant="primary" type="submit" className='small-button'>
-            Buscar
-          </Button>
         </Form>
       </Container>
 
 
       <br /><br /><br /><br />
-      <Container>
-        <DropdownWithSearch
-          options={allProductos}
-          current={undefined}
-          handleOptionUpdated={handleOptionUpdated}
-          title={"Digite el nombre del producto"}>
-        </DropdownWithSearch>
-      </Container>
-
-      <br />
 
       <Container className='container-margin'>
         <Table striped bordered hover>
