@@ -5,6 +5,8 @@ import { crearProductoPOST } from "../../services/api";
 import DropdownWithSearch from "../DropdownWithSearch";
 import { buscarTodosClientesGET } from "../../services/api";
 
+
+
 function CrearProducto() {
   const [descripcion, setDescripcion] = useState("");
   const [cantidad, setCantidad] = useState("");
@@ -129,10 +131,9 @@ function CrearProducto() {
             handleOptionUpdated={handleOptionUpdated}
             title={"Digite el nombre del producto"}>
             </DropdownWithSearch>
-            
           </Col>
         </Form.Group>
-
+        <br/>
         <Button variant="primary" type="submit">
           Crear Producto
         </Button>

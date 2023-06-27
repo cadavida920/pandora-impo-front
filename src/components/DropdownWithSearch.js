@@ -6,6 +6,8 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 
+import { MdKeyboardArrowDown } from 'react-icons/md';
+
 const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = "Selecciona una opción" }) => {
   const [value, setValue] = useState(currentKey);
   const [selectedOption, setSelectedOption] = useState(currentKey);
@@ -32,7 +34,6 @@ const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = 
   },[currentKey]);
 
   const handleSearch = (e) => {
-    debugger;
     setValue(e.target.value);
   };
 
@@ -43,7 +44,6 @@ const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = 
 
   const handleClick = (event) => {
     event.preventDefault();
-    debugger;
     const id = event.target.tabIndex;
     handleOptionUpdated(id);
   };
@@ -53,13 +53,12 @@ const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = 
   };
 
   return (
-    <Dropdown onSelect={handleSelect} className="dropdown-button">
+    <Dropdown onSelect={handleSelect} className="dropdown-button custom-dropdown">
       <DropdownButton
         id="dropdown-basic-button"
         title={selectedOption}
         as={InputGroup.Prepend}
-        variant="secondary"
-        className="dropdown-button"
+        className="dropdown-button custom-dropdown"
         onClick={handleDropdownClick}>
         <FormControl
           value={value}
@@ -73,7 +72,8 @@ const DropdownWithSearch = ({ options, currentKey, handleOptionUpdated, title = 
             key={index}
             eventKey={option.id}
             tabIndex={option.id}
-            onClick={handleClick}>
+            onClick={handleClick}
+            >
             {option.name}
           </Dropdown.Item>
         ))}

@@ -41,6 +41,13 @@
   width: 100%;
 }
 
+.custom-dropdown .dropdown-toggle {
+  background-color: blue;
+  color: blue;
+  border-color: black;
+}
+
+
 
 
 

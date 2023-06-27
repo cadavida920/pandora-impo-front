@@ -53,3 +53,21 @@ code {
 .modal-dialog {
   width: fit-content;
 }
+
+.custom-dropdown .dropdown-toggle {
+  background-color: #70DAEE;
+  color: #70DAEE;
+  border-color:#70DAEE;
+}
+
+.dropdown-toggle::after{
+  display: none !important;
+}
+
+.dropdown-toggle {
+  width: 80px;
+}
+
+td.inline-block {
+  display: inline-block;
+}
